@@ -1,6 +1,8 @@
 //word_selected: is the word to be translated to the base_language
 //base_language: is the default language set on the user google account
-async function translateText(word_selected, base_language) {
+
+
+async function makeTranslationAPIRequest(word_selected, base_language) {
 	const res = await fetch("https://libretranslate.com/translate", {
 		method: "POST",
 		body: JSON.stringify({
@@ -17,6 +19,6 @@ async function translateText(word_selected, base_language) {
 	return data;
 }
 
-translateText().then(data => {
+makeTranslationAPIRequest().then(data => {
 	console.log(data);
   });
