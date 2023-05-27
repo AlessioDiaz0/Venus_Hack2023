@@ -10,5 +10,16 @@
 </head>
 <body>
     <button id="flashButton" style="font-family:verdana; color:purple;">Go to flashcards!</button>
+    <div id = "google_translate_element"></div>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement (
+            {pageLanguage: 'en'},
+            'google_trnslate_element'
+        );
+    }
+        </script>
+    <button>somethingg</button>
 </body>
 </html>

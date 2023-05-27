@@ -1,40 +1,63 @@
+// Imports the Google Cloud client library
+// const {Translate} = require('@google-cloud/translate').v2;
+
+// Creates a client
+
+function translateTextSample(text, target) {
+  // [START translate_translate_text]
+  // Imports the Google Cloud client library
+  const {Translate} = require('@google-cloud/translate').v2;
+
+  // Creates a client
+  const translate = new Translate();
+
+  /**
+   * TODO(developer): Uncomment the following lines before running the sample.
+   */
+  // const text = 'The text to translate, e.g. Hello, world!';
+  // const target = 'The target language, e.g. ru';
+
+  async function translateText() {
+    // Translates the text into the target language. "text" can be a string for
+    // translating a single piece of text, or an array of strings for translating
+    // multiple texts.
+    let [translations] = await translate.translate(text, target);
+    translations = Array.isArray(translations) ? translations : [translations];
+    console.log('Translations:');
+    translations.forEach((translation, i) => {
+      console.log(`${text[i]} => (${target}) ${translation}`);
+    });
+  }
+
+  translateText();
+    
+  // [END translate_translate_text]
+}
+
+async function makeTranslationAPIRequest(word_selected, base_language) {
+	const res = await fetch("https://libretranslate.com/translate", {
+		method: "POST",
+		body: JSON.stringify({
+			q: word_selected,
+			source: "auto",
+			target: base_language,
+			format: "text",
+            api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+		}),
+		headers: { "Content-Type": "application/json" }
+	});
+	const data = await res.json(); 
+	//console.log(data); print out the out come
+	return data;
+}
 
 
-// async function makeTranslationAPIRequest(word_selected, base_language) {
-// 	const res = await fetch("https://libretranslate.com/translate", {
-// 		method: "POST",
-// 		body: JSON.stringify({
-// 			q: word_selected,
-// 			source: "auto",
-// 			target: base_language,
-// 			format: "text",
-//             api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-// 		}),
-// 		headers: { "Content-Type": "application/json" }
-// 	});
-// 	const data = await res.json(); 
-// 	//console.log(data); print out the out come
-// 	return data;
-// }
+const API_KEY = 'AIzaSyAqtKw1PdVUCwi3dBOgotZcVFCAf3x75xk';
+let user_signed_in = false;
 
-// makeTranslationAPIRequest().then(data => {
-// 	console.log(data);
-// });
+//getting the authtoken
+chrome.identity.getAuthToken({ interactive: true }, function (token) {console.log(token);});
 
-// async function translateText(word_selected, base_language) {
-//     try {
-//         const translation = await makeTranslationAPIRequest(word_selected, base_language);
-        
-//         return translation;
-//     } catch (error) {
-//         console.error("error", error);
-//         throw error;
-//     }
-// }
-
-// translateText().then(data => {
-// 	console.log(data);
-//   });
 
 const textElements = document.querySelectorAll("*:not(script):not(style):not(link):not(meta):not(title):not(path):not(svg):not([hidden]):not([aria-hidden='true'])");
 const popup = document.createElement("div");
@@ -52,7 +75,9 @@ document.addEventListener("mouseup", async function(event) {
         // const modifiedText = "something";
         // console.log(modifiedText);
 
-        const modifiedText = selectedText;
+        // const modifiedText = selectedText;
+        // const modifiedText = translateTextSample(selectedText, 'es')
+        const modifiedText = selectedText
 
         //popup
         // const popup = document.createElement("div");
