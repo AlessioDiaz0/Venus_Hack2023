@@ -39,7 +39,7 @@ const textElements = document.querySelectorAll("*:not(script):not(style):not(lin
 document.addEventListener("mouseup", async function(event) {
     const selectedText = window.getSelection().toString().trim();
 
-    if (selectedText != "" || selectedText != " ") {
+    if (selectedText.length >= 1) {
             // Perform your desired action here
         console.log("Highlighted text:", selectedText);
 
@@ -47,6 +47,21 @@ document.addEventListener("mouseup", async function(event) {
         // const modifiedText = selectedText.toUpperCase(); // Example modification, change as needed
         const modifiedText = await translateText(selectedText, "it")
         console.log(modifiedText)
+
+        //popup
+        const popup = document.createElement("div");
+        popup.textContent = "Selected text: " + selectedText;
+        popup.style.position = "fixed";
+        popup.style.top = event.clientY + "px";
+        popup.style.left = event.clientX + "px";
+        popup.style.backgroundColor = "white";
+        popup.style.padding = "10px";
+        popup.style.border = "1px solid black";
+        popup.style.zIndex = "9999";
+        popup.style.userSelect = 'none';
+        popup.style.MozUserSelect = 'none';
+        popup.style.msUserSelect = 'none';
+
 
         // Create a range object from the current selection
         const selection = window.getSelection();
@@ -63,9 +78,20 @@ document.addEventListener("mouseup", async function(event) {
         range.selectNode(modifiedTextNode);
         selection.removeAllRanges();
         selection.addRange(range);
+
+        document.body.appendChild(popup);
+        //when you unselect the selection we want to delete the popup
+
     }
 
 
+});
+
+document.addEventListener("mousedown", function(event) {
+    if (popup && !popup.contains(event.target)) {
+        popup.parentNode.removeChild(popup);
+        popup = null;
+    }
 });
 
 
