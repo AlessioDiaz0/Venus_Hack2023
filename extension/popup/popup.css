@@ -1,0 +1,9 @@
+#flashButton {
+    border: 4px solid purple;
+    background-color: white;
+    border-radius: 5px;
+}
+
+body {
+    border-radius: 5px;
+}
