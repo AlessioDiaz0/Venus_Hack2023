@@ -8,6 +8,9 @@
         "48": "/images/logo48.png",
         "128": "/images/logo128.png"
     },
+    "action": {
+        "default_popup": "popup.html"
+    },
     "page_action": {
         "default_icons": {
             "16": "/images/logo16-2.png",
