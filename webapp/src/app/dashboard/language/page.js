@@ -3,11 +3,13 @@ export default function Authentication() {
     return(
         <main class="flex flex-row">
             <div class="flex flex-col gap-y-16 py-40 px-10">
-                <button>Flash Cards</button>
-                <button>Quizzes</button>
+                <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100">
+                    <u>Flash Cards</u>
+                </button>
+                <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100">Quizzes</button>
             </div>
             <div class="flex flex-col gap-y-16 px-52">
-                <h1 class="ont-Nunito font-extrabold text-4xl px-72">Language</h1>
+                <h1 class="ont-Nunito font-extrabold text-4xl px-64">Language</h1>
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
