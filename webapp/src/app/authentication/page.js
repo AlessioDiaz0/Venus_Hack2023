@@ -36,7 +36,7 @@ export default function Authentication() {
       <div className="login" class="font-Nunito flex justify-center">
         <button
           onClick={sign_in}
-          class="rounded-xl text-4xl text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200 p-10 hover:from-indigo-100 hover:to-fuchsia-100"
+          class="rounded-xl text-4xl font-bold text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200 p-10 hover:from-indigo-100 hover:to-fuchsia-100"
         >
           Sign In With Google
         </button>
