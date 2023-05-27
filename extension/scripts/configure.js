@@ -1,40 +1,43 @@
 
-async function makeTranslationAPIRequest(word_selected, base_language) {
-	const res = await fetch("https://libretranslate.com/translate", {
-		method: "POST",
-		body: JSON.stringify({
-			q: word_selected,
-			source: "auto",
-			target: base_language,
-			format: "text",
-            api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-		}),
-		headers: { "Content-Type": "application/json" }
-	});
 
-	const data = await res.json(); 
-	//console.log(data); print out the out come
-	return data;
-}
+// async function makeTranslationAPIRequest(word_selected, base_language) {
+// 	const res = await fetch("https://libretranslate.com/translate", {
+// 		method: "POST",
+// 		body: JSON.stringify({
+// 			q: word_selected,
+// 			source: "auto",
+// 			target: base_language,
+// 			format: "text",
+//             api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+// 		}),
+// 		headers: { "Content-Type": "application/json" }
+// 	});
+// 	const data = await res.json(); 
+// 	//console.log(data); print out the out come
+// 	return data;
+// }
 
-makeTranslationAPIRequest().then(data => {
-	console.log(data);
-});
+// makeTranslationAPIRequest().then(data => {
+// 	console.log(data);
+// });
 
-async function translateText(word_selected, base_language) {
-    try {
-        const translation = await makeTranslationAPIRequest(word_selected, base_language);
-        return translation;
-    } catch (error) {
-        console.error("error", error);
-        throw error;
-    }
-}
+// async function translateText(word_selected, base_language) {
+//     try {
+//         const translation = await makeTranslationAPIRequest(word_selected, base_language);
+        
+//         return translation;
+//     } catch (error) {
+//         console.error("error", error);
+//         throw error;
+//     }
+// }
 
-translateText().then(data => {
-	console.log(data);
-  });
+// translateText().then(data => {
+// 	console.log(data);
+//   });
+
 const textElements = document.querySelectorAll("*:not(script):not(style):not(link):not(meta):not(title):not(path):not(svg):not([hidden]):not([aria-hidden='true'])");
+const popup = document.createElement("div");
 
 document.addEventListener("mouseup", async function(event) {
     const selectedText = window.getSelection().toString().trim();
@@ -45,11 +48,14 @@ document.addEventListener("mouseup", async function(event) {
 
         // Modify the selected text
         // const modifiedText = selectedText.toUpperCase(); // Example modification, change as needed
-        const modifiedText = await translateText(selectedText, "it")
-        console.log(modifiedText)
+        // const modifiedText = await translateText(selectedText, "it")
+        // const modifiedText = "something";
+        // console.log(modifiedText);
+
+        const modifiedText = selectedText;
 
         //popup
-        const popup = document.createElement("div");
+        // const popup = document.createElement("div");
         popup.textContent = "Selected text: " + selectedText;
         popup.style.position = "fixed";
         popup.style.top = event.clientY + "px";
@@ -61,7 +67,6 @@ document.addEventListener("mouseup", async function(event) {
         popup.style.userSelect = 'none';
         popup.style.MozUserSelect = 'none';
         popup.style.msUserSelect = 'none';
-
 
         // Create a range object from the current selection
         const selection = window.getSelection();
@@ -81,10 +86,7 @@ document.addEventListener("mouseup", async function(event) {
 
         document.body.appendChild(popup);
         //when you unselect the selection we want to delete the popup
-
     }
-
-
 });
 
 document.addEventListener("mousedown", function(event) {
