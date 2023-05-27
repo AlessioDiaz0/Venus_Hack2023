@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 async function translateText(word_selected, base_language) {
     try {
         const translation = await makeTranslationAPIRequest(word_selected, base_language);
@@ -14,6 +15,45 @@ translateText().then(data => {
 	console.log(data);
 });
 
+=======
+
+// async function makeTranslationAPIRequest(word_selected, base_language) {
+// 	const res = await fetch("https://libretranslate.com/translate", {
+// 		method: "POST",
+// 		body: JSON.stringify({
+// 			q: word_selected,
+// 			source: "auto",
+// 			target: base_language,
+// 			format: "text",
+//             api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+// 		}),
+// 		headers: { "Content-Type": "application/json" }
+// 	});
+// 	const data = await res.json(); 
+// 	//console.log(data); print out the out come
+// 	return data;
+// }
+
+// makeTranslationAPIRequest().then(data => {
+// 	console.log(data);
+// });
+
+// async function translateText(word_selected, base_language) {
+//     try {
+//         const translation = await makeTranslationAPIRequest(word_selected, base_language);
+        
+//         return translation;
+//     } catch (error) {
+//         console.error("error", error);
+//         throw error;
+//     }
+// }
+
+// translateText().then(data => {
+// 	console.log(data);
+//   });
+
+>>>>>>> f9b529953cc162af85ed8c0917b551dd72a21dc4
 const textElements = document.querySelectorAll("*:not(script):not(style):not(link):not(meta):not(title):not(path):not(svg):not([hidden]):not([aria-hidden='true'])");
 const popup = document.createElement("div");
 
@@ -26,11 +66,24 @@ document.addEventListener("mouseup", async function(event) {
         console.log("Highlighted text:", selectedText);
 
         // Modify the selected text
+<<<<<<< HEAD
         const modifiedText = selectedText
         console.log(modifiedText)
 
         //popup
         popup.textContent = "Translated: " + selectedText;
+=======
+        // const modifiedText = selectedText.toUpperCase(); // Example modification, change as needed
+        // const modifiedText = await translateText(selectedText, "it")
+        // const modifiedText = "something";
+        // console.log(modifiedText);
+
+        const modifiedText = selectedText;
+
+        //popup
+        // const popup = document.createElement("div");
+        popup.textContent = "Selected text: " + selectedText;
+>>>>>>> f9b529953cc162af85ed8c0917b551dd72a21dc4
         popup.style.position = "fixed";
         popup.style.top = event.clientY + "px";
         popup.style.left = event.clientX + "px";
@@ -44,6 +97,25 @@ document.addEventListener("mouseup", async function(event) {
         popup.style.MozUserSelect = 'none';
         popup.style.msUserSelect = 'none';
 
+<<<<<<< HEAD
+=======
+        // Create a range object from the current selection
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+
+        // Create a text node with the modified text
+        const modifiedTextNode = document.createTextNode(modifiedText);
+
+        // Replace the selected text with the modified text node
+        range.deleteContents();
+        range.insertNode(modifiedTextNode);
+
+        // Adjust the selection to encompass the modified text
+        range.selectNode(modifiedTextNode);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+>>>>>>> f9b529953cc162af85ed8c0917b551dd72a21dc4
         document.body.appendChild(popup);
         //when you unselect the selection we want to delete the popup
     }
