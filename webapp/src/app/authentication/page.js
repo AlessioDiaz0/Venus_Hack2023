@@ -1,6 +1,6 @@
-"use client";
-import { auth, provider } from "../../firebase/config.js";
-import { useRouter } from "next/navigation";
+"use client"
+import { auth, provider} from "../../firebase/config.js";
+import { useRouter } from 'next/navigation';
 export default function Authentication() {
   const router = useRouter();
   const sign_in = () => {
@@ -15,17 +15,6 @@ export default function Authentication() {
         console.log(error.message);
       });
   };
-  // const sign_out = () => {
-  //     auth.signOut()
-  //     .then((res) => {
-  //         console.log("log out works.");
-  //     })
-  //     .catch((error) =>{
-  //         console.log("log out no work :(");
-  //         console.log(error.message)
-  //         router.push('/authentication')
-  //     })
-  // };
   return (
     <main class="min-h-screen bg-gradient-to-b p-4 from-purple-950 via-indigo-950 to-slate-950 flex flex-col gap-y-52 items-center">
       <div>
@@ -41,9 +30,6 @@ export default function Authentication() {
           Sign In With Google
         </button>
       </div>
-      {/* <div className="logOut" class="p-10">
-                        <button onClick={sign_out}>Sign out with google</button>
-                </div> */}
     </main>
   );
 }
