@@ -1,4 +1,7 @@
-import { initializeApp, getApps } from "firebase/app";
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,9 +12,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-
 // Initialize Firebase
-let firebase_app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+firebase.initializeApp(firebaseConfig);
 
-export default firebase_app;
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+export const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(provider).then(console.log("login works"));
+export const signOutWithGoogle = () => auth.signOut().then(console.log("logout works"));
+
+export default firebase;
