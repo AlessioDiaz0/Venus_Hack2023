@@ -1,13 +1,13 @@
 "use client"
-// import {getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider} from "../../firebase/config.js";
-// const provider = new GoogleAuthProvider();
-// const auth = getAuth;
+import { useRouter } from 'next/navigation';
 export default function Authentication() {
+    const router = useRouter();
     const sign_in = () => {
         auth.signInWithPopup(provider)
         .then((res) => {
             console.log("login works.");
+            router.push('/dashboard')
         })
         .catch((error) =>{
             console.log("login no work :(");
