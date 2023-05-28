@@ -38,7 +38,7 @@ export default function Quizzes() {
                {'<'}
             </button>
             <div class="flex flex-col gap-y-16 px-10">
-                <h1 class="ont-Nunito font-extrabold text-4xl px-64">Language</h1>
+                <h1 class="font-Nunito font-extrabold text-3xl py-5 px-64">Language</h1>
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
