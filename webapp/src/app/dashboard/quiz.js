@@ -6,10 +6,27 @@ import * as React from "react";
 export default function Quiz() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [words, setWords] = useState([
-    { word: "word1", translation: "translation1" },
-    { word: "word2", translation: "translation2" },
-    { word: "word3", translation: "translation3" },
-    { word: "word4", translation: "translation4" },
+    {
+      word: "interpolate",
+      definition:
+        "insert (something of a different nature) into something else",
+      pronunciation: "in-TER-puh-layt",
+    },
+    {
+      word: "sapient",
+      definition: "possessing or expressing great wisdom",
+      pronunciation: "SAY-pee-unt",
+    },
+    {
+      word: "hobbyhorse",
+      definition: "a subject that someone dwells on or talks about frequently",
+      pronunciation: "HAH-bee-horss",
+    },
+    {
+      word: "adumbrate",
+      definition: "to vaguely foreshadow or suggest something",
+      pronunciation: "AD-um-brayt",
+    },
   ]);
 
   return (
@@ -29,13 +46,13 @@ export default function Quiz() {
       <div class="flip-card absolute left-0 right-0 mx-72">
         <div class="flip-card-inner">
           <div class="flip-card-front">
-            <h2 class="bg-white py-64 px-80 rounded-xl text-indigo-950 text-4xl flex justify-center">
+            <h2 class="bg-white py-60 px-60 rounded-xl text-indigo-950 text-4xl flex justify-center">
               {words[currentIndex].word}
             </h2>
           </div>
           <div class="flip-card-back">
-            <h2 class="bg-white py-64 px-80 rounded-xl text-indigo-950 text-4xl flex justify-center">
-              {words[currentIndex].translation}
+            <h2 class="bg-white py-60 px-60 rounded-xl text-indigo-950 text-4xl flex justify-center">
+              {words[currentIndex].definition}
             </h2>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }) {
       .signOut()
       .then((res) => {
         console.log("log out works.");
-        router.push("/authentication");
+        router.push("/");
       })
       .catch((error) => {
         console.log("log out no work :(");
