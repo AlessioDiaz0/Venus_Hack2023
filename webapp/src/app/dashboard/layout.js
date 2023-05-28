@@ -25,7 +25,7 @@ export default function DashboardLayout({ children }) {
     <main class="min-h-screen bg-gradient-to-b p-4 from-purple-950 via-indigo-950 to-slate-950">
       <div class="flex p-4 justify-center">
         <div class="">
-          <span class="font-Nunito font-extrabold text-4xl bg-gradient-to-r from-fuchsia-200 to-violet-400 bg-clip-text text-transparent">
+          <span class="font-Nunito font-black text-4xl bg-gradient-to-r from-fuchsia-200 to-violet-400 bg-clip-text text-transparent">
             <a href="/">VenusLingo!</a>
           </span>
         </div>
