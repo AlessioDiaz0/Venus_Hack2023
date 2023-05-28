@@ -1,14 +1,21 @@
+'use strict';
+
+// Content script file will run in the context of web page.
+// With content script you can manipulate the web pages using
+// Document Object Model (DOM).
+// You can also pass information to the parent extension.
+
+// We execute this script by making an entry in manifest.json file
+// under `content_scripts` property
+
+// For more information on Content Scripts,
+// See https://developer.chrome.com/extensions/content_scripts
+
+// Log `title` of current active web page
 // Imports the Google Cloud client library
 
-const fullPath = await import.meta.resolve("@google-cloud/translate");
-const path = fullPath?.match(/(\/node_modules.*)/)[0];
-console.log(path);
 
-// import translate from '@google-cloud/translate';
-// const {Translate} = require('@google-cloud/translate').v2;
-// console.log("tttttt");
-
-chrome.runtime.onConnect.addListener(async () => {
+chrome.runtime.onConnect.addListener(() => {
     console.log("connected");
 });
 
@@ -19,59 +26,24 @@ const {Translate} = require('@google-cloud/translate').v2;
 const translate = new Translate({projectId});
 
 async function quickStart() {
-  // The text to translate
-  const text = 'Hello, world!';
+    // The text to translate
+    const text = 'Hello, world!';
 
-  // The target language
-  const target = 'ru';
+    // The target language
+    const target = 'ru';
 
-  // Translates some text into Russian
-  const [translation] = await translate.translate(text, target);
-  console.log(`Text: ${text}`);
-  console.log(`Translation: ${translation}`);
+    // Translates some text into Russian
+    const [translation] = await translate.translate(text, target);
+    console.log(`Text: ${text}`);
+    console.log(`Translation: ${translation}`);
 }
 
 quickStart();
-translateTextSample("a sentence", "es")
+// translateTextSample("a sentence", "es")
 
 const text = 'The text to translate, e.g. Hello, world!';
 const target = 'The target language, e.g. ru';
 
-function translateText() {
-
-  const apiKey = 'AIzaSyAqtKw1PdVUCwi3dBOgotZcVFCAf3x75xk'; // Replace with your Google Translate API key
-
-  // Construct the API request URL
-  const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
-
-  // Create the request payload
-  const payload = {
-    q: text,
-    target: target,
-  };
-
-  // Send a POST request to the Google Translate API
-  fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // Handle the API response
-      const translations = data.data.translations;
-      console.log('Translations:');
-      translations.forEach((translation, i) => {
-        console.log(`${text[i]} => (${target}) ${translation.translatedText}`);
-      });
-    })
-    .catch((error) => {
-      console.error('1 Error:', error);
-    });
-    console.log("translateText has been called!")
-}
 
 // translateText();
 console.log("something for me to see")
@@ -148,4 +120,7 @@ function handleHoverEvent(event) {
 }
 
 console.log("xxxxx");
+
+
+
 
