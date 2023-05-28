@@ -1,11 +1,13 @@
 "use client";
-import { auth, firebase } from "../../firebase/config.js";
+import { auth } from "../../firebase/config";
 import "firebase/auth";
 import "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function DashboardLayout({ children }) {
+  const [user, loading, error] = useAuthState(auth);
+  console.log("Loading ", loading, "| Current user:", user, " | Error:", error);
   const router = useRouter();
   const sign_out = () => {
     auth
