@@ -74,6 +74,13 @@ document.addEventListener("mouseup", async function(event) {
             // Perform your desired action when the button is clicked
             console.log("Button clicked!");
             //pass savedWord to the user's database
+            let request = new XMLHttpRequest();
+            request.open("GET", `https://firestore.googleapis.com/v1/projects/translingo-8181b/databases/(default)/documents`);
+            request.send();
+            request.onload = async () => {
+                const response = await JSON.parse(request.response);
+                console.log(response);
+            }
 
             document.removeEventListener("mouseup", popup)
             popup.remove();
