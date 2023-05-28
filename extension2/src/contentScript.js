@@ -14,7 +14,9 @@
 // Log `title` of current active web page
 // Imports the Google Cloud client library
 
-
+function request_handler() {
+    console.log("log", url)
+}
 chrome.runtime.onConnect.addListener(() => {
     console.log("connected");
 });
@@ -26,66 +28,98 @@ const target = 'The target language, e.g. ru';
 // translateText();
 console.log("something for me to see")
 const textElements = document.querySelectorAll("*:not(script):not(style):not(link):not(meta):not(title):not(path):not(svg):not([hidden]):not([aria-hidden='true'])");
-const popup = document.createElement("div");
-
+// const popup = document.createElement("div");
+var popup = null
+var bool = false
 document.addEventListener("mouseup", async function(event) {
-    const selectedText = window.getSelection().toString().trim();
+    // var selectedText = window.getSelection().toString().trim();
+    var selectedText = "";
 
-    if (selectedText.length >= 1) {
+    if (popup == null) {
+        selectedText =  window.getSelection().toString().trim();
+    } 
+    console.log("selected text is : ", selectedText)
+
+    if (selectedText.length >= 1 && popup == null) {
             // Perform your desired action here
+            bool = true
+        popup = document.createElement("div")
+        document.removeEventListener("mousedown", popup)
+        
+        // document.removeEventListener("mouseup", popup)
         console.log("Highlighted text:", selectedText);
+        let apiCall = new XMLHttpRequest();
+        apiCall.open("GET", `https://api.dictionaryapi.dev/api/v2/entries/en/${selectedText}`);
+        selectedText = "";
+        apiCall.send();
+        apiCall.onload = async () => {
+            const response = await JSON.parse(apiCall.response);
+            const definition = await response[0].meanings[0].definitions[0].definition;
+            const modifiedText = await definition; // Set the variable 'modifiedText' with the definition value
+            console.log(modifiedText)
+            popup.textContent = "Definition: " + modifiedText 
+            + "[ " + response[0].phonetic + "]";
+        const button = document.createElement("button");
+        button.textContent = "Save Me";
+        button.style.backgroundColor = "orange";
+        button.style.color = "white";
+        button.style.padding = "5px 5px";
+        button.style.border = "none";
+        button.style.marginTop = "25px";
+        button.id = "saveButton";
+        popup.appendChild(button);
 
-        // Modify the selected text
-        // const modifiedText = selectedText.toUpperCase(); // Example modification, change as needed
-        // const modifiedText = await translateText(selectedText, "it")
-        // const modifiedText = "something";
-        // console.log(modifiedText);
-        // const modifiedText = selectedText;
-        // const modifiedText = translateTextSample(selectedText, 'es')
-        const modifiedText = selectedText
+        // Add a click event listener to the button
+        button.addEventListener("click", async (savedWord) => {
+            // Perform your desired action when the button is clicked
+            console.log("Button clicked!");
+            //pass savedWord to the user's database
 
-        // popup.textContent = "Selected text: " + selectedText;
-        popup.textContent = "Selected text: " + selectedText;
-        // translateTextSample(selectedText, 'es')
+            document.removeEventListener("mouseup", popup)
+            popup.remove();
 
+            //ckl function to save on user's database
+        });
+        };
         popup.style.position = "fixed";
-        popup.style.top = event.clientY + "px";
+        popup.style.top = (event.clientY + 15) + "px";
         popup.style.left = event.clientX + "px";
-        popup.style.backgroundColor = "white";
-        popup.style.padding = "10px";
+        popup.style.backgroundColor = "purple"; 
+        popup.style.color = "white";
+        popup.style.font = "Nunito";
+        popup.style.padding = "40px";
         popup.style.border = "1px solid black";
         popup.style.zIndex = "9999";
         popup.style.userSelect = 'none';
         popup.style.MozUserSelect = 'none';
+        popup.style.display = "flex";
         popup.style.msUserSelect = 'none';
+        popup.style.justifyContent = "center";
+        popup.style.flexDirection = "column";
+        popup.style.alignItems = "center";
+
 
         // Create a range object from the current selection
-        const selection = window.getSelection(); const range = selection.getRangeAt(0);
-
-        // Create a text node with the modified text
-        const modifiedTextNode = document.createTextNode(modifiedText);
-
-        // Replace the selected text with the modified text node
-        range.deleteContents();
-        range.insertNode(modifiedTextNode);
-
-        // Adjust the selection to encompass the modified text
-        range.selectNode(modifiedTextNode);
-        selection.removeAllRanges();
-        selection.addRange(range);
-
+        // const selection = window.getSelection();
+        //  const range = selection.getRangeAt(0);
         document.body.appendChild(popup);
         //when you unselect the selection we want to delete the popup
     }
 });
 
 document.addEventListener("mousedown", function(event) {
-    if (popup && !popup.contains(event.target)) {
+    if (popup && !popup.contains(event.target) && event.target.id != "saveButton") {
         popup.parentNode.removeChild(popup);
         popup = null;
+    } else if (popup && popup.contains(event.target) && event.target.id != "saveButton") { 
+        popup.parentNode.removeChild(popup);
+        popup = null;
+        //we're supposed to include the function where we're suppoed to save the data into the database
     }
 });
 
+// popup.appendChild(button);
+// document.body.appendChild(popup);
 
 // Define the function to be executed when the hover event occurs
 function handleHoverEvent(event) {
@@ -97,7 +131,6 @@ function handleHoverEvent(event) {
     console.log("here")
 }
 
-console.log("xxxxx");
 
 
 
