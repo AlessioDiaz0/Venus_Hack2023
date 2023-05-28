@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "venuslingo",
+  "private_key_id": "ba1ec47324d0527f22ea9442127f1c5f4585ef67",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC35U+JAbnJ8si6\n8hfa89sZVGoE/Z5Acz/JrZqmT6N6ewlSDeuYgHovpiUBG3lEbPNhiHIkr7Vm7ybK\nV/C7vNHmPDo7Cr92szV/ZGOxoT8AiNlqBlOiOgclugaCs1GTUnEKQVcge/Tju65L\nw0VAaYBP7y6ZwD7vd6Bk65XwWb6qBmN5ed9EGuTTlirq+vxzL5qMlA/Gv6CdPSDy\nJsGM+VHWUZsmMNUlkIajszeG8dq6w2KPuXjFDTw4WeRwxniqqmIm94Hsb8ypQ5cP\nLiMVnif+XLexgRLJwejWi8Uu0ZisKm7ynmWuiMjebi4dx4zt5gnhQBuU/0ignhF6\n5o9S99PzAgMBAAECggEAEchtgAi4MCS3r4hQsT4qnlDw7ame34mljfmpPlLuMp5q\nQNKSyU0HQ8tTwb8n42uLv49DxnNtXdZbkG6fm2//dj21vdbku/RJhJevIlK+9mzF\nZYDWHpZw8X+DOKlhhpcO0liONdh2znzsNmxcKoXpQBGXloumKl8NliTH+5WaH/PT\nMKdE6hsjKHAbKjS11C6D/90ZlPFgP3z8Nn3yHIOA/3dRhmYDLNI326xshtyVPNJz\nqDcPlLyiKSBCVJEiyfC/dEawLPHd4+PQbZOja2zDwHE/MHDhLM0e+Rtha666opar\nmzDOcBfkP+WadNg218t1o8Nj9PgxwLr6w+m6TbjhEQKBgQDjpZZD5DGftEss+vVI\ntmmdvZgOEOG3/6EtXh3oYGg3beMCYCVsGT4AxnSBwY39HPkWEnkTWB272oTQSrlZ\nnEjcvJCSkUwPmovdj1cink4NCsrmT6N/sAGke2GZpvuTThXTZGX11mSW9Ks6TR/i\nVB0USNdPvSgYNmv7FPjeJLgosQKBgQDOzL2sfJwBQahwvwyMLOUAz/2A5ATsCNOw\nD0/l5mWeN2FeMV8GIPfe1mL/E1Op2sxmb5wPO1zk0S6YObRcOwPucLfTrjBeUnNx\n8elCoTHNYrw6DpbrhEy6THy8OJig9EZn+jf3mA/737WRS4cugi6yC/oLwLqUsnjh\nBW0l7Ddv4wKBgQCASuOCY2nr/SmYsd3mGpcvBJha5PywO2pULQRh32McSdtzjUfJ\nwfgFa9JhBfnFObzOyZ5eXnxzT9UlpdcLP154t/QqBaR97rUAKjYLFngaNYjffuY/\noatrTPVWKJsDCzCVr7EeeLK7uCt/cdOUM58nvV1KXOnpq1HzcIBIgR0gIQKBgFE9\nmZ3zbg4ITzXLuBAxat2A2CQUb+KSLSdTPJ4ifvVC6Ftqpdvwg6/lJQrz+sAVlor/\neZ16QqoZi2Z99N7uyEKZwX3FRncniPbQhESKstfu2+cq6Bsp5EKj3bTLvxosHKSo\nZeg8srrOTbQAqeCZf+KuVdLcKfBUlKxBx3lIbRblAoGANfnhMywHG1Y3VdxmYq3J\nWJcoE1aknmLUUvtBqcQ3UHJlEU/GGhWN4i5a+FwYkcSK61DCGNMGqWwfoJ1XsS4j\n8wiua4P0IOxir1ByLSox+b065hnf8pGbiuI38g7jvMkV5iVRzfRsXwfG8jhAaVkO\nnTfYpkZ9vvbvQJo9U73P+Os=\n-----END PRIVATE KEY-----\n",
+  "client_email": "venuslingoservice@venuslingo.iam.gserviceaccount.com",
+  "client_id": "102801833226453942007",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/venuslingoservice%40venuslingo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

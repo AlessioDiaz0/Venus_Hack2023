@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "Extension2",
+    "version": "0.1.0",
+    "description": "My Chrome Extension",
+    "icons": {
+      "16": "public/icons/icon_16.png",
+      "32": "public/icons/icon_32.png",
+      "48": "public/icons/icon_48.png",
+      "128": "public/icons/icon_128.png"
+    },
+    "background": {
+      "service_worker": "src/background.js",
+      "type": "module"
+    },
+    "action": {
+      "default_title": "Extension2",
+      "default_popup": "src/popup.html"
+    },
+    "permissions": [
+          "tabs",
+          "storage",
+          "identity",
+          "identity.email",
+          "activeTab",
+          "scripting"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "<all_urls>"
+        ],
+        "run_at": "document_idle",
+        "js": [
+          "src/contentScript.js"
+        ]
+      }
+    ],
+    "oauth2": {
+        "client_id": "121608638258-iuqt6loj17dc3h45els83l66jm80fc5t.apps.googleusercontent.com/",
+        "scopes": [
+            "profile email",
+            "https://www.googleapis.com/auth/contacts",
+            "https://www.googleapis.com/auth/userinfo.profile"
+        ]
+    }
+  }

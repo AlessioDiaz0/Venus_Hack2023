@@ -3,10 +3,19 @@
     "name": "Translingo",
     "description": "Translate videos into any languages.",
     "version": "1.12",
+    "key": "iaalfdkhmpndlimilpbcacdjkgmnhbea",
     "permissions": [
         "tabs",
-        "storage"
+        "storage",
+        "identity",
+        "identity.email",
+        "activeTab",
+        "scripting"
     ],
+    "background": {
+        "service_worker" : "background.js",
+        "type": "module"
+    },
     "icons": {
         "16": "/images/logo16.png",
         "48": "/images/logo48.png",
@@ -21,9 +30,17 @@
         "default_popup": "/popup/popup.html"
     },
     "content_scripts": [{
-        "matches": ["http://*/*"],
+        "matches": ["https://*/*"],
         "css": ["/main.css"],
         "js": ["/scripts/configure.js"],
         "translator": ["/scripts/translator_api.js"]
-    }]
+    }],
+    "oauth2": {
+        "client_id": "121608638258-stp7ff9ietut7nlb5rei07ulpi8esoo9.apps.googleusercontent.com",
+        "scopes": [
+            "profile email",
+            "https://www.googleapis.com/auth/contacts",
+            "https://www.googleapis.com/auth/userinfo.profile"
+        ]
+    }
 }
