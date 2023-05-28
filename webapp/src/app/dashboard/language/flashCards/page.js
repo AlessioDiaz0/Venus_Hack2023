@@ -17,7 +17,7 @@ export default function flashCards() {
                 <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-5 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100">
                     <u>Flash Cards</u>
                 </button>
-                <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100" onClick={quiz}>Quizzes</button>
+                <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100" onClick={quiz}>Quiz</button>
             </div>
                 <div class="container px-28">
                     <div class="box">

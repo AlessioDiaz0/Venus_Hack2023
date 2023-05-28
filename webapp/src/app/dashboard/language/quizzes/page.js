@@ -31,7 +31,7 @@ export default function Quizzes() {
                 <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100" onClick={flashcard}>Flash Cards
                 </button>
                 <button class="text-indigo-950 bg-gradient-to-r from-indigo-200 to-fuchsia-200  px-3 py-2 rounded-xl font-bold hover:from-indigo-100 hover:to-fuchsia-100">
-                    <u>Quizzes</u>
+                    <u>Quiz</u>
                     </button>
             </div>
             <button class="text-9xl px-20 py-72 hover:text-black" onClick={change_word}>
