@@ -1,64 +1,80 @@
 // Imports the Google Cloud client library
+
+const fullPath = await import.meta.resolve("@google-cloud/translate");
+const path = fullPath?.match(/(\/node_modules.*)/)[0];
+console.log(path);
+
+// import translate from '@google-cloud/translate';
 // const {Translate} = require('@google-cloud/translate').v2;
+// console.log("tttttt");
+
+chrome.runtime.onConnect.addListener(() => {
+    console.log("connected");
+});
 
 // Creates a client
+const {Translate} = require('@google-cloud/translate').v2;
 
-function translateTextSample(text, target) {
-  // [START translate_translate_text]
-  // Imports the Google Cloud client library
-  const {Translate} = require('@google-cloud/translate').v2;
+// Instantiates a client
+const translate = new Translate({projectId});
 
-  // Creates a client
-  const translate = new Translate();
+async function quickStart() {
+  // The text to translate
+  const text = 'Hello, world!';
 
-  /**
-   * TODO(developer): Uncomment the following lines before running the sample.
-   */
-  // const text = 'The text to translate, e.g. Hello, world!';
-  // const target = 'The target language, e.g. ru';
+  // The target language
+  const target = 'ru';
 
-  async function translateText() {
-    // Translates the text into the target language. "text" can be a string for
-    // translating a single piece of text, or an array of strings for translating
-    // multiple texts.
-    let [translations] = await translate.translate(text, target);
-    translations = Array.isArray(translations) ? translations : [translations];
-    console.log('Translations:');
-    translations.forEach((translation, i) => {
-      console.log(`${text[i]} => (${target}) ${translation}`);
+  // Translates some text into Russian
+  const [translation] = await translate.translate(text, target);
+  console.log(`Text: ${text}`);
+  console.log(`Translation: ${translation}`);
+}
+
+quickStart();
+translateTextSample("a sentence", "es")
+
+const text = 'The text to translate, e.g. Hello, world!';
+const target = 'The target language, e.g. ru';
+
+function translateText() {
+
+  const apiKey = 'AIzaSyAqtKw1PdVUCwi3dBOgotZcVFCAf3x75xk'; // Replace with your Google Translate API key
+
+  // Construct the API request URL
+  const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+
+  // Create the request payload
+  const payload = {
+    q: text,
+    target: target,
+  };
+
+  // Send a POST request to the Google Translate API
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the API response
+      const translations = data.data.translations;
+      console.log('Translations:');
+      translations.forEach((translation, i) => {
+        console.log(`${text[i]} => (${target}) ${translation.translatedText}`);
+      });
+    })
+    .catch((error) => {
+      console.error('1 Error:', error);
     });
-  }
-
-  translateText();
-    
-  // [END translate_translate_text]
+    console.log("translateText has been called!")
 }
 
-async function makeTranslationAPIRequest(word_selected, base_language) {
-	const res = await fetch("https://libretranslate.com/translate", {
-		method: "POST",
-		body: JSON.stringify({
-			q: word_selected,
-			source: "auto",
-			target: base_language,
-			format: "text",
-            api_key: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-		}),
-		headers: { "Content-Type": "application/json" }
-	});
-	const data = await res.json(); 
-	//console.log(data); print out the out come
-	return data;
-}
-
-
-const API_KEY = 'AIzaSyAqtKw1PdVUCwi3dBOgotZcVFCAf3x75xk';
-let user_signed_in = false;
-
-//getting the authtoken
-chrome.identity.getAuthToken({ interactive: true }, function (token) {console.log(token);});
-
-
+// translateText();
+console.log("something for me to see")
 const textElements = document.querySelectorAll("*:not(script):not(style):not(link):not(meta):not(title):not(path):not(svg):not([hidden]):not([aria-hidden='true'])");
 const popup = document.createElement("div");
 
@@ -74,14 +90,14 @@ document.addEventListener("mouseup", async function(event) {
         // const modifiedText = await translateText(selectedText, "it")
         // const modifiedText = "something";
         // console.log(modifiedText);
-
         // const modifiedText = selectedText;
         // const modifiedText = translateTextSample(selectedText, 'es')
         const modifiedText = selectedText
 
-        //popup
-        // const popup = document.createElement("div");
+        // popup.textContent = "Selected text: " + selectedText;
         popup.textContent = "Selected text: " + selectedText;
+        // translateTextSample(selectedText, 'es')
+
         popup.style.position = "fixed";
         popup.style.top = event.clientY + "px";
         popup.style.left = event.clientX + "px";
@@ -94,8 +110,7 @@ document.addEventListener("mouseup", async function(event) {
         popup.style.msUserSelect = 'none';
 
         // Create a range object from the current selection
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
+        const selection = window.getSelection(); const range = selection.getRangeAt(0);
 
         // Create a text node with the modified text
         const modifiedTextNode = document.createTextNode(modifiedText);
@@ -132,8 +147,5 @@ function handleHoverEvent(event) {
     console.log("here")
 }
 
-// Add the event listener to each text-based element
-// textElements.forEach(element => {
-//     element.addEventListener("mouseover", handleHoverEvent);
-// });
+console.log("xxxxx");
 

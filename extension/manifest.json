@@ -8,8 +8,14 @@
         "tabs",
         "storage",
         "identity",
-        "identity.email"
+        "identity.email",
+        "activeTab",
+        "scripting"
     ],
+    "background": {
+        "service_worker" : "background.js",
+        "type": "module"
+    },
     "icons": {
         "16": "/images/logo16.png",
         "48": "/images/logo48.png",
@@ -33,7 +39,8 @@
         "client_id": "121608638258-stp7ff9ietut7nlb5rei07ulpi8esoo9.apps.googleusercontent.com",
         "scopes": [
             "profile email",
-            "https://www.googleapis.com/auth/contacts"
+            "https://www.googleapis.com/auth/contacts",
+            "https://www.googleapis.com/auth/userinfo.profile"
         ]
     }
 }
