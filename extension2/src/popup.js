@@ -1,6 +1,6 @@
 'use strict';
 
-import './popup.css';
+// import './popup.css';
 
 window.addEventListener('DOMContentLoaded', function() {
     var link = document.getElementById('flashButton');

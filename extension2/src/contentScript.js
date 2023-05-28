@@ -19,28 +19,6 @@ chrome.runtime.onConnect.addListener(() => {
     console.log("connected");
 });
 
-// Creates a client
-const {Translate} = require('@google-cloud/translate').v2;
-
-// Instantiates a client
-const translate = new Translate({projectId});
-
-async function quickStart() {
-    // The text to translate
-    const text = 'Hello, world!';
-
-    // The target language
-    const target = 'ru';
-
-    // Translates some text into Russian
-    const [translation] = await translate.translate(text, target);
-    console.log(`Text: ${text}`);
-    console.log(`Translation: ${translation}`);
-}
-
-quickStart();
-// translateTextSample("a sentence", "es")
-
 const text = 'The text to translate, e.g. Hello, world!';
 const target = 'The target language, e.g. ru';
 

@@ -20,6 +20,29 @@
 //   }
 // });
 
+
+// Creates a client
+import { v2 } from '@google-cloud/translate';
+const { Translate } = v2;
+
+// Instantiates a client
+const translate = new Translate({projectId});
+
+async function quickStart() {
+    // The text to translate
+    const text = 'Hello, world!';
+
+    // The target language
+    const target = 'ru';
+
+    // Translates some text into Russian
+    const [translation] = await translate.translate(text, target);
+    console.log(`Text: ${text}`);
+    console.log(`Translation: ${translation}`);
+}
+
+quickStart();
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     if (request.message === 'get_auth_token') {
